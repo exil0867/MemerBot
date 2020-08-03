@@ -1,0 +1,26 @@
+{
+  "name": "remotebot",
+  "version": "1.0.0",
+  "description": "A Discord bot to generate Gif Memes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ExillustX/GifMemeGen.git"
+  },
+  "author": "ExillustX",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ExillustX/GifMemeGen/issues"
+  },
+  "homepage": "https://github.com/ExillustX/GifMemeGen#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "gm": "^1.23.1",
+    "string-pixel-width": "^1.10.0"
+  }
+}
