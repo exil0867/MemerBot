@@ -10,21 +10,23 @@ exports.run = async (bot, msg, args) => {
   let url;
   let memeText;
 
+  const invalidArgsErr = `Please split top and bottom text using a | divider. Type: \`${process.env.PREFIX}help\` for more info`;
+
   if (msg.attachments.array()[0]) {
     url = msg.attachments.array()[0].url;
     memeText = args.join(' ').toUpperCase().split('|').map(item => item.trim());
-    if (memeText.length !== 2) return msg.channel.send(`Invalid command!`);
+    if (memeText.length !== 2) return msg.channel.send(invalidArgsErr);
   } else if (isImageUrl(args[0])) {
     url = args[0];
     memeText = args.filter((item, index) => index !== 0).join(' ').toUpperCase().split('|').map(item => item.trim());
-    if (memeText.length !== 2) return msg.channel.send(`Invalid command!`);
+    if (memeText.length !== 2) return msg.channel.send(invalidArgsErr);
   } else {
-    return msg.channel.send(`Error: Unknown!`);
+    return msg.channel.send('Error: Unknown!');
   }
   const topText = memeText[0];
   const bottomText = memeText[1];
 
-  if (!isImageUrl(url)) return msg.channel.send(`Error: The file is not an image!`);
+  if (!isImageUrl(url)) return msg.channel.send('Error: The file is not an image!');
 
   const response = await fetch(url);
   const buffer = await response.buffer();
