@@ -20,8 +20,8 @@ exports.run = async (bot, msg, args) => {
   const { ext } = await fileType.fromBuffer(buffer);
   const outputFileName = `meme.${ext}`;
 
-  memeGenerator(buffer, outputFileName, ext, {top: topText, bottom: bottomText}).then(outBuffer => {
-    const attachment = new MessageAttachment(outBuffer, outputFileName);
+  memeGenerator(buffer, outputFileName, ext, {top: topText, bottom: bottomText}).then(outputBuffer => {
+    const attachment = new MessageAttachment(outputBuffer, outputFileName);
     msg.channel.send('Done!', attachment);
   }).catch(err => {
     msg.channel.send(`Error: ${err.message}`);
