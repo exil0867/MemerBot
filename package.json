@@ -20,7 +20,10 @@
   "dependencies": {
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
+    "file-type": "^14.7.0",
     "gm": "^1.23.1",
+    "image-size": "^0.8.3",
+    "node-fetch": "^2.6.0",
     "string-pixel-width": "^1.10.0"
   }
 }
