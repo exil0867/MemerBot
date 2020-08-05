@@ -20,14 +20,12 @@ exports.run = async (bot, msg, args) => {
   const { ext } = await fileType.fromBuffer(buffer);
   const outputFileName = `meme.${ext}`;
 
-  try {
-    memeGenerator(buffer, outputFileName, ext, {top: topText, bottom: bottomText}).then(outBuffer => {
-      const attachment = new MessageAttachment(outBuffer, outputFileName);
-      msg.channel.send('Done!', attachment);
-    })
-  } catch (err) {
+  memeGenerator(buffer, outputFileName, ext, {top: topText, bottom: bottomText}).then(outBuffer => {
+    const attachment = new MessageAttachment(outBuffer, outputFileName);
+    msg.channel.send('Done!', attachment);
+  }).catch(err => {
     msg.channel.send(`Error: ${err.message}`);
-  }
+  });
 };
 
 exports.help = {
