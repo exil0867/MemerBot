@@ -2,18 +2,27 @@ require('dotenv').config();
 const fetch = require('node-fetch');
 const { MessageAttachment } = require('discord.js');
 const fileType = require('file-type');
+const isImageUrl = require('is-image-url');
 const memeGenerator = require('../lib/meme-generator');
 const fs = require('fs');
 
 exports.run = async (bot, msg, args) => {
-  const memeText = args.filter((item, index) => index !== 0).join(' ').split('|').map(item => item.trim());
+  let url;
+  let memeText;
 
-  if (memeText.length !== 2) return msg.channel.send(`Invalid command!`);
-
-
-  const url = args[0];
+  if (msg.attachments.array()[0]) {
+    url = msg.attachments.array()[0].url;
+    memeText = args.join(' ').split('|').map(item => item.trim());
+    if (memeText.length !== 2) return msg.channel.send(`Invalid command!`);
+  } else if (args[0]) {
+    const url = args[0];
+    memeText = args.filter((item, index) => index !== 0).join(' ').split('|').map(item => item.trim());
+    if (memeText.length !== 2) return msg.channel.send(`Invalid command!`);
+  }
   const topText = memeText[0];
   const bottomText = memeText[1];
+
+  if (!isImageUrl(url)) return msg.channel.send(`Error: The file is not an image!`);
 
   const response = await fetch(url);
   const buffer = await response.buffer();

@@ -23,6 +23,7 @@
     "file-type": "^14.7.0",
     "gm": "^1.23.1",
     "image-size": "^0.8.3",
+    "is-image-url": "^1.1.8",
     "node-fetch": "^2.6.0",
     "string-pixel-width": "^1.10.0"
   }
