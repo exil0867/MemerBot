@@ -1,7 +1,7 @@
 {
   "name": "memerbot",
   "version": "1.0.0",
-  "description": "A Discord bot to generate Gif Memes",
+  "description": "A Discord bot that generates GIF memes (supports normal images and GIFs)",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
