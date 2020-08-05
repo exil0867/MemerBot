@@ -6,14 +6,14 @@ const memeGenerator = require('../lib/meme-generator');
 const fs = require('fs');
 
 exports.run = async (bot, msg, args) => {
-  const memeObject = args.filter((item, index) => index !== 0).join(' ').split('|').map(item => item.trim());
+  const memeText = args.filter((item, index) => index !== 0).join(' ').split('|').map(item => item.trim());
 
-  if (memeObject !== 2) return msg.channel.send(`Invalid command!`);
+  if (memeText.length !== 2) return msg.channel.send(`Invalid command!`);
 
 
   const url = args[0];
-  const topText = memeObject[0];
-  const bottomText = memeObject[0];
+  const topText = memeText[0];
+  const bottomText = memeText[0];
 
   const response = await fetch(url);
   const buffer = await response.buffer();
