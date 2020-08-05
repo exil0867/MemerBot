@@ -14,10 +14,12 @@ exports.run = async (bot, msg, args) => {
     url = msg.attachments.array()[0].url;
     memeText = args.join(' ').split('|').map(item => item.trim());
     if (memeText.length !== 2) return msg.channel.send(`Invalid command!`);
-  } else if (args[0]) {
+  } else if (isImageUrl(args[0])) {
     const url = args[0];
     memeText = args.filter((item, index) => index !== 0).join(' ').split('|').map(item => item.trim());
     if (memeText.length !== 2) return msg.channel.send(`Invalid command!`);
+  } else {
+    return msg.channel.send(`Error: Unknown!`);
   }
   const topText = memeText[0];
   const bottomText = memeText[1];
