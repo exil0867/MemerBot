@@ -13,7 +13,7 @@ exports.run = async (bot, msg, args) => {
 
   const url = args[0];
   const topText = memeText[0];
-  const bottomText = memeText[0];
+  const bottomText = memeText[1];
 
   const response = await fetch(url);
   const buffer = await response.buffer();
