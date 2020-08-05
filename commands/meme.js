@@ -15,7 +15,7 @@ exports.run = async (bot, msg, args) => {
     memeText = args.join(' ').split('|').map(item => item.trim());
     if (memeText.length !== 2) return msg.channel.send(`Invalid command!`);
   } else if (isImageUrl(args[0])) {
-    const url = args[0];
+    url = args[0];
     memeText = args.filter((item, index) => index !== 0).join(' ').split('|').map(item => item.trim());
     if (memeText.length !== 2) return msg.channel.send(`Invalid command!`);
   } else {
