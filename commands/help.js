@@ -7,6 +7,9 @@ exports.run = (bot, msg, args) => {
       'fields': [{
           'name': process.env.PREFIX + 'help',
           'value': 'List of all commands.'
+        }, {
+          'name': process.env.PREFIX + 'meme',
+          'value': `Generate a meme (Supports normal images and GIFs). \nUsage: \`${process.env.PREFIX}meme\ <link> top text | bottom text\`\nUsage (with an image attachement): \`${process.env.PREFIX}meme\ top text | bottom text\``
         }
       ],
       'color': 3264944,
