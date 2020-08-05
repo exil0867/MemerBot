@@ -21,7 +21,7 @@ exports.run = async (bot, msg, args) => {
     memeText = args.filter((item, index) => index !== 0).join(' ').toUpperCase().split('|').map(item => item.trim());
     if (memeText.length !== 2) return msg.channel.send(invalidArgsErr);
   } else {
-    return msg.channel.send('Error: Unknown!');
+    return msg.channel.send(`Error: Unknown!, type: \`${process.env.PREFIX}help\` for more info`);
   }
   const topText = memeText[0];
   const bottomText = memeText[1];
