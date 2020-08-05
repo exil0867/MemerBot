@@ -1,5 +1,5 @@
 {
-  "name": "remotebot",
+  "name": "memerbot",
   "version": "1.0.0",
   "description": "A Discord bot to generate Gif Memes",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ExillustX/GifMemeGen.git"
+    "url": "git+https://github.com/ExillustX/MemerBot.git"
   },
   "author": "ExillustX",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ExillustX/GifMemeGen/issues"
+    "url": "https://github.com/ExillustX/MemerBot/issues"
   },
-  "homepage": "https://github.com/ExillustX/GifMemeGen#readme",
+  "homepage": "https://github.com/ExillustX/MemerBot#readme",
   "dependencies": {
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
