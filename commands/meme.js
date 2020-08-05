@@ -12,11 +12,11 @@ exports.run = async (bot, msg, args) => {
 
   if (msg.attachments.array()[0]) {
     url = msg.attachments.array()[0].url;
-    memeText = args.join(' ').split('|').map(item => item.trim());
+    memeText = args.join(' ').toUpperCase().split('|').map(item => item.trim());
     if (memeText.length !== 2) return msg.channel.send(`Invalid command!`);
   } else if (isImageUrl(args[0])) {
     url = args[0];
-    memeText = args.filter((item, index) => index !== 0).join(' ').split('|').map(item => item.trim());
+    memeText = args.filter((item, index) => index !== 0).join(' ').toUpperCase().split('|').map(item => item.trim());
     if (memeText.length !== 2) return msg.channel.send(`Invalid command!`);
   } else {
     return msg.channel.send(`Error: Unknown!`);
