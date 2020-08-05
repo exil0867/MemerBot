@@ -1,20 +1,33 @@
 require('dotenv').config();
+const fetch = require('node-fetch');
+const { MessageAttachment } = require('discord.js');
+const fileType = require('file-type');
+const memeGenerator = require('../lib/meme-generator');
+const fs = require('fs');
 
-exports.run = (bot, msg, args) => {
-  const argParts = args.split(' ');
+exports.run = async (bot, msg, args) => {
+  const memeObject = args.filter((item, index) => index !== 0).join(' ').split('|').map(item => item.trim());
 
-  if (argParts.length !== 3) return msg.channel.send(`Invalid command!`);
-
-  const url = argParts[0];
-  const topText = argParts[1];
-  const bar = argParts[2];
-  const bottomText = argParts[3];
+  if (memeObject !== 2) return msg.channel.send(`Invalid command!`);
 
 
-  // msg.channel.send(`Invite the bot to your server:\n${invite}`)
-  // .catch(err => {
-  //   msg.channel.send(`Error: ${err.message}`);
-  // });
+  const url = args[0];
+  const topText = memeObject[0];
+  const bottomText = memeObject[0];
+
+  const response = await fetch(url);
+  const buffer = await response.buffer();
+  const { ext } = await fileType.fromBuffer(buffer);
+  const outputFileName = `meme.${ext}`;
+
+  try {
+    memeGenerator(buffer, outputFileName, ext, {top: topText, bottom: bottomText}).then(outBuffer => {
+      const attachment = new MessageAttachment(outBuffer, outputFileName);
+      msg.channel.send('Done!', attachment);
+    })
+  } catch (err) {
+    msg.channel.send(`Error: ${err.message}`);
+  }
 };
 
 exports.help = {
