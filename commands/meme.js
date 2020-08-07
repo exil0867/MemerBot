@@ -49,7 +49,8 @@ exports.run = async (bot, msg, args) => {
         msg.channel.send(err.message)
       });
     }).catch((err) => {
-      msg.channel.send(`Error: ${err.message}`);
+      msg.channel.send(`Error: Cannot convert the file`);
+      console.log(err)
     }).finally(() => {
       setTimeout(() => {
         fs.rmdir(dirPath, { recursive: true })
