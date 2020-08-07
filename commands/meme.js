@@ -45,7 +45,9 @@ exports.run = async (bot, msg, args) => {
     memeGenerator(filePath, outputPath, {top: topText, bottom: bottomText})
     .then(outputBuffer => {
       const attachment = new MessageAttachment(outputBuffer, outputFileName);
-      msg.channel.send('Done!', attachment);
+      msg.channel.send('Done!', attachment).catch(err => {
+        msg.channel.send(err.message)
+      });
     }).catch((err) => {
       msg.channel.send(`Error: ${err.message}`);
     }).finally(() => {
