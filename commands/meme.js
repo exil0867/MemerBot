@@ -4,7 +4,10 @@ const { MessageAttachment } = require('discord.js');
 const fileType = require('file-type');
 const isImageUrl = require('is-image-url');
 const memeGenerator = require('../lib/meme-generator');
-const fs = require('fs');
+const dlFile = require('../utils/dl-file');
+const fs = require('fs').promises;
+const { v4: uuidv4 } = require('uuid');
+const path = require('path');
 
 exports.run = async (bot, msg, args) => {
   let url;
@@ -31,14 +34,32 @@ exports.run = async (bot, msg, args) => {
   const response = await fetch(url);
   const buffer = await response.buffer();
   const { ext } = await fileType.fromBuffer(buffer);
-  const outputFileName = `meme.${ext}`;
+  const instanceId = uuidv4();
+  const fileName = `input.${ext}`;
+  const outputFileName = `output.${ext}`;
+  const dirPath = path.resolve(process.cwd(), 'tmp', instanceId);
+  const filePath = path.resolve(dirPath, fileName);
+  const outputPath = path.resolve(dirPath, outputFileName);
 
-  memeGenerator(buffer, outputFileName, ext, {top: topText, bottom: bottomText}).then(outputBuffer => {
-    const attachment = new MessageAttachment(outputBuffer, outputFileName);
-    msg.channel.send('Done!', attachment);
-  }).catch(err => {
-    msg.channel.send(`Error: ${err.message}`);
-  });
+  dlFile(buffer, dirPath, filePath).then(() => {
+    memeGenerator(filePath, outputPath, {top: topText, bottom: bottomText})
+    .then(outputBuffer => {
+      const attachment = new MessageAttachment(outputBuffer, outputFileName);
+      msg.channel.send('Done!', attachment);
+    }).catch((err) => {
+      msg.channel.send(`Error: ${err.message}`);
+    }).finally(() => {
+      setTimeout(() => {
+        fs.rmdir(dirPath, { recursive: true })
+      }, 6000)
+    })
+  })
+  .catch(err => {
+    setTimeout(() => {
+      fs.rmdir(dirPath, { recursive: true })
+    }, 6000)
+    return msg.channel.send(`Error: ${err.message}`);
+  })
 };
 
 exports.help = {
