@@ -47,7 +47,6 @@ exports.run = async (bot, msg, args) => {
   const feedbackMsg = msg.channel.send(`Processing... This might take a while!`);
 
   dlFile(buffer, dirPath, filePath).then(() => {
-    console.log('we out here');
     captionGenerator(filePath, outputPath, captionPath, captionText)
     .then(outputBuffer => {
       feedbackMsg.then(msg => {
