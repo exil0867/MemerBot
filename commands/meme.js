@@ -50,7 +50,7 @@ exports.run = async (bot, msg, args) => {
     memeGenerator(filePath, outputPath, {top: topText, bottom: bottomText})
     .then(outputBuffer => {
       feedbackMsg.then(msg => {
-        msg.delete(5000).catch(err => {
+        msg.delete({ timeout: 5000, reason: 'Because i can :D'}).catch(err => {
           console.log(err);
         })
         const attachment = new MessageAttachment(outputBuffer, outputFileName);
