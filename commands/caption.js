@@ -23,7 +23,7 @@ exports.run = async (bot, msg, args) => {
     captionText = args.filter((item, index) => index !== 0).join(' ').trim();
   } else if (isTenor = hostnameChecker(args[0], 'tenor.com') || hostnameChecker(args[0], 'media1.tenor.com')) {
     url = await tenorScraper(args[0]);
-    captionText = args.filter((item, index) => index !== 0).join(' ').toUpperCase().split('|').map(item => item.trim());
+    captionText = args.filter((item, index) => index !== 0).join(' ').trim();
   } else {
     return msg.channel.send(`Error: Unknown!, type: \`${process.env.PREFIX}help\` for more info`);
   }
