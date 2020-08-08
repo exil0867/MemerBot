@@ -42,7 +42,7 @@ exports.run = async (bot, msg, args) => {
   const filePath = path.resolve(dirPath, fileName);
   const outputPath = path.resolve(dirPath, outputFileName);
 
-  if (sizeInMb > 4) return msg.channel.send('Error: File size is larger than 4MB, please reduce the size and try again!');
+  if (sizeInMb > 4) return msg.channel.send(`Error: File size is larger than 4MB, i don't wanna suffer`);
 
   dlFile(buffer, dirPath, filePath).then(() => {
     memeGenerator(filePath, outputPath, {top: topText, bottom: bottomText})
