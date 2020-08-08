@@ -44,13 +44,20 @@ exports.run = async (bot, msg, args) => {
 
   if (sizeInMb > 4) return msg.channel.send(`Error: File size is larger than 4MB, i don't wanna suffer`);
 
+  const feedbackMsg = msg.channel.send(`Processing... This might take a while!`);
+
   dlFile(buffer, dirPath, filePath).then(() => {
     memeGenerator(filePath, outputPath, {top: topText, bottom: bottomText})
     .then(outputBuffer => {
-      const attachment = new MessageAttachment(outputBuffer, outputFileName);
-      msg.channel.send('Done!', attachment).catch(err => {
-        msg.channel.send(err.message)
-      });
+      feedbackMsg.then(msg => {
+        msg.delete(5000).catch(err => {
+          console.log(err);
+        })
+        const attachment = new MessageAttachment(outputBuffer, outputFileName);
+        msg.channel.send('Done!', attachment).catch(err => {
+          msg.channel.send(err.message)
+        });
+      })
     }).catch((err) => {
       msg.channel.send(`Error: Cannot convert the file`);
       console.log(err)
