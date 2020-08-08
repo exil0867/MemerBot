@@ -79,5 +79,5 @@ exports.run = async (bot, msg, args) => {
 exports.help = {
   name: 'caption',
   usage: 'caption',
-  description: 'Generate a gif caption'
+  description: 'Generate a GIF Caption meme'
 };
