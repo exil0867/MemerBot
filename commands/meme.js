@@ -54,7 +54,7 @@ exports.run = async (bot, msg, args) => {
           console.log(err);
         })
         const attachment = new MessageAttachment(outputBuffer, outputFileName);
-        msg.channel.send('Done!', attachment).catch(err => {
+        msg.channel.send('', attachment).catch(err => {
           msg.channel.send(err.message)
         });
       })
