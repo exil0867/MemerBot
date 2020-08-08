@@ -1,12 +1,11 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const isImageUrl = require('is-image-url');
-const url = require('url');
+const hostnameChecker = require('./hostname-check');
 
 const tenorScraper = tenorUrl => {
   return new Promise( async (resolve, reject) => {
-    const hostName = url.parse(tenorUrl).hostname;
-    if (hostName !== 'tenor.com') reject(new Error('Hostname is not a tenor.com'))
+    if (!hostnameChecker(tenorUrl, 'tenor.com')) reject(new Error('Hostname is not a tenor.com'));
     const response = await fetch(tenorUrl).catch(err => reject(err));
     const html = await response.text().catch(err => reject(err));
     const $ = cheerio.load(html);
