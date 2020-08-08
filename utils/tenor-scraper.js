@@ -7,7 +7,7 @@ const tenorScraper = url => {
   return new Promise( async (resolve, reject) => {
     const hostName = url.parse(url).hostName;
     if (hostName !== 'tenor.com') reject(new Error('Hostname is not a tenor.com'))
-    const response = await fetch('https://tenor.com/view/gintama-gif-9531144').catch(err => reject(err));
+    const response = await fetch(url).catch(err => reject(err));
     const html = await response.text().catch(err => reject(err));
     const $ = cheerio.load(html);
     const directGifLink = $('[property="og:url"]')['0'].attribs.content;
