@@ -8,6 +8,8 @@ const fs = require('fs').promises;
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const captionGenerator = require('../lib/caption-generator');
+const hostnameChecker = require('../utils/hostname-check');
+const tenorScraper = require('../utils/tenor-scraper');
 
 exports.run = async (bot, msg, args) => {
   let url;
@@ -19,6 +21,8 @@ exports.run = async (bot, msg, args) => {
   } else if (isImageUrl(args[0])) {
     url = args[0];
     captionText = args.filter((item, index) => index !== 0).join(' ').trim();
+  } else if (isTenor = hostnameChecker(args[0], 'tenor.com') || hostnameChecker(args[0], 'media1.tenor.com')) {
+    url = await tenorScraper(args[0]);
   } else {
     return msg.channel.send(`Error: Unknown!, type: \`${process.env.PREFIX}help\` for more info`);
   }
@@ -43,6 +47,7 @@ exports.run = async (bot, msg, args) => {
   const feedbackMsg = msg.channel.send(`Processing... This might take a while!`);
 
   dlFile(buffer, dirPath, filePath).then(() => {
+    console.log('we out here');
     captionGenerator(filePath, outputPath, captionPath, captionText)
     .then(outputBuffer => {
       feedbackMsg.then(msg => {
