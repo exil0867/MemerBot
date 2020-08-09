@@ -14,7 +14,11 @@ Example:
 
 ## Commands
 `m!caption <link> caption text`
+
 `m!meme <link> top text | bottom text`
+
 `m!invite`
+
 `m!ping`
+
 `m!help`
