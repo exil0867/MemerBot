@@ -4,6 +4,7 @@ A Discord bot that generates GIF memes (supports normal images and GIFs)
 ### Meme templates (Supports most image formats (JPG, PNG, GIF, etc...))
 - GIF Caption template (Aka iFunny GIF caption)
 - Top/Bottom text template
+- More templates and features coming soon.
 
 ## Screenshots
 ![Bot usage screenshot](https://i.imgur.com/2a9g0WE.gif)
