@@ -10,15 +10,16 @@ A Discord bot that generates GIF memes (supports normal images and GIFs)
 
 #### Indirect Tenor GIF links are supported.
 Example:
+
 `m!caption https://tenor.com/view/monkey-wake-wake-up-sleepy-tired-gif-5387775 caption text`
 
 ## Commands
-`m!caption <link> caption text`
+- `m!caption <link> caption text`
 
-`m!meme <link> top text | bottom text`
+- `m!meme <link> top text | bottom text`
 
-`m!invite`
+- `m!invite`
 
-`m!ping`
+- `m!ping`
 
-`m!help`
+- `m!help`
