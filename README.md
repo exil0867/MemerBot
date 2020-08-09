@@ -6,7 +6,7 @@ A Discord bot that generates GIF memes (supports normal images and GIFs)
 - Top/Bottom text template
 
 ## Screenshots
-
+![Bot usage screenshot](https://i.imgur.com/2a9g0WE.gif)
 
 #### Indirect Tenor GIF links are supported.
 Example:
