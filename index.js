@@ -46,11 +46,13 @@ discordClient.on('message', message => {
   if (!content.startsWith(config.PREFIX)) {
     return;
   }
-  let split = content.substr(config.PREFIX.length).split(' ');
+  let raw = content.substr(config.PREFIX.length);
+  let split = raw.split(' ');
   let label = split[0];
   let args = split.slice(1);
+  let rawArgs = raw.slice(1);
   if (commandsMap.get(label)) {
-    commandsMap.get(label).run(discordClient, message, args);
+    commandsMap.get(label).run(discordClient, message, args, rawArgs);
   }
 });
 

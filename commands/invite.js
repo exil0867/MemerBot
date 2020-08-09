@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-exports.run = (bot, msg, args) => {
+exports.run = (bot, msg, args, rawArgs) => {
   bot.generateInvite([
     'SEND_MESSAGES',
     'MANAGE_MESSAGES',

@@ -11,7 +11,7 @@ const path = require('path');
 const hostnameChecker = require('../utils/hostname-check');
 const tenorScraper = require('../utils/tenor-scraper');
 
-exports.run = async (bot, msg, args) => {
+exports.run = async (bot, msg, args, rawArgs) => {
   let url;
   let memeText;
 

@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-exports.run = (bot, msg, args) => {
+exports.run = (bot, msg, args, rawArgs) => {
   msg.channel.send({
     embed: {
       'title': 'Help command',
