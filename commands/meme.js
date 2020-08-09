@@ -17,6 +17,8 @@ exports.run = async (bot, msg, args, rawArgs) => {
 
   const invalidArgsErr = `Please split top and bottom text using a | divider. Type: \`${process.env.PREFIX}help\` for more info`;
 
+  // Yes i am aware of the bad code, i just don't have the enough energy to clean it up
+
   if (msg.attachments.array()[0]) {
     url = msg.attachments.array()[0].url;
     memeText = args.join(' ').toUpperCase().split('|').map(item => item.trim());

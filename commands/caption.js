@@ -15,6 +15,8 @@ exports.run = async (bot, msg, args, rawArgs) => {
   let url;
   let captionText;
 
+  // Yes i am aware of the bad code, i just don't have the enough energy to clean it up
+
   if (msg.attachments.array()[0]) {
     url = msg.attachments.array()[0].url;
     captionText = args.join(' ').trim();
