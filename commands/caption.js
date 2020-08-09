@@ -53,11 +53,12 @@ exports.run = async (bot, msg, args, rawArgs) => {
     captionGenerator(filePath, outputPath, captionPath, captionText)
     .then(outputBuffer => {
       feedbackMsg.then(msg => {
-        msg.delete({ timeout: 5000, reason: 'Because i can :D'}).catch(err => {
-          console.log(err);
-        })
         const attachment = new MessageAttachment(outputBuffer, outputFileName);
-        msg.channel.send('', attachment).catch(err => {
+        msg.channel.send('', attachment).then(() => {
+          msg.delete().catch(err => {
+            console.log(err);
+          })
+        }).catch(err => {
           msg.channel.send(err.message)
         });
       })
