@@ -1,10 +1,7 @@
 require('dotenv').config();
 
 exports.run = (bot, msg, args, rawArgs) => {
-  bot.generateInvite([
-    'SEND_MESSAGES',
-    'MANAGE_MESSAGES',
-  ]).then(invite => {
+  bot.generateInvite(321600).then(invite => {
     msg.channel.send(`Invite the bot to your server:\n${invite}`)
     .catch(err => {
       msg.channel.send(`Error: ${err.message}`);
