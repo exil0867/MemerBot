@@ -23,3 +23,5 @@ Example:
 - `m!ping`
 
 - `m!help`
+
+Feel free to report issues on: [https://github.com/ExillustX/MemerBot/issues](https://github.com/ExillustX/MemerBot/issues)
