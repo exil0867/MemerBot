@@ -19,6 +19,8 @@ exports.run = async (bot, msg, args, rawArgs) => {
 
   // Yes i am aware of the bad code, i just don't have the enough energy to clean it up
 
+  if (args.length === 0) return msg.channel.send(`Error: Missing command arguments!, Type: \`${process.env.PREFIX}help\` for more info`);
+
   if (msg.attachments.array()[0]) {
     url = msg.attachments.array()[0].url;
     memeText = args.join(' ').toUpperCase().split('|').map(item => item.trim());
