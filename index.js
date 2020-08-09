@@ -51,6 +51,7 @@ discordClient.on('message', message => {
   let label = split[0];
   let args = split.slice(1);
   let rawArgs = raw.slice(1);
+  if (args.length === 0) return message.channel.send('Error: Missing command arguments!');
   if (commandsMap.get(label)) {
     commandsMap.get(label).run(discordClient, message, args, rawArgs);
   }
