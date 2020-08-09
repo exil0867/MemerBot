@@ -14,6 +14,9 @@ exports.run = (bot, msg, args, rawArgs) => {
           'name': process.env.PREFIX + 'meme',
           'value': `Generate a meme (Supports normal images and GIFs). \nUsage: \`${process.env.PREFIX}meme\ <link> top text | bottom text\`\nUsage (with an image attachement): \`${process.env.PREFIX}meme\ top text | bottom text\``
         }, {
+          'name': process.env.PREFIX + 'ping',
+          'value': `Pings the bot`
+        }, {
           'name': process.env.PREFIX + 'invite',
           'value': `Invite the bot to your server.`
         }
