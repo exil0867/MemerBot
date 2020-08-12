@@ -1,11 +1,14 @@
 require('dotenv').config();
 const fetch = require('node-fetch');
-const { MessageAttachment } = require('discord.js');
+const {
+  MessageAttachment
+} = require('discord.js');
 const fileType = require('file-type');
 const isImageUrl = require('is-image-url');
-const dlFile = require('../utils/dl-file');
 const fs = require('fs').promises;
-const { v4: uuidv4 } = require('uuid');
+const {
+  v4: uuidv4
+} = require('uuid');
 const path = require('path');
 const captionGenerator = require('../lib/caption-generator');
 const hostnameChecker = require('../utils/hostname-check');
@@ -17,7 +20,7 @@ exports.run = async (bot, msg, args, rawArgs) => {
 
   // Yes i am aware of the bad code, i just don't have the enough energy to clean it up
 
-  if (args.length === 0) return msg.channel.send(`Error: Missing command arguments!, Type: \`${process.env.PREFIX}help\` for more info`);
+  if (args.length === 0) return msg.channel.send(`Error: Missing command arguments!, Type: \`${process.env.PREFIX}help\` for more info`)
 
   if (msg.attachments.array()[0]) {
     url = msg.attachments.array()[0].url;
@@ -26,7 +29,7 @@ exports.run = async (bot, msg, args, rawArgs) => {
     url = args[0];
     captionText = args.filter((item, index) => index !== 0).join(' ').trim();
   } else if (isTenor = hostnameChecker(args[0], 'tenor.com') || hostnameChecker(args[0], 'media1.tenor.com')) {
-    url = await tenorScraper(args[0]);
+    url = await tenorScraper(args[0]).catch(err => (msg.channel.send('Error: could net fetch the Tenor URL')));
     captionText = args.filter((item, index) => index !== 0).join(' ').trim();
   } else {
     return msg.channel.send(`Error: Unknown!, type: \`${process.env.PREFIX}help\` for more info`);
@@ -36,45 +39,31 @@ exports.run = async (bot, msg, args, rawArgs) => {
 
   const response = await fetch(url);
   const buffer = await response.buffer();
-  const { ext } = await fileType.fromBuffer(buffer);
-  const sizeInMb = buffer.byteLength / Math.pow(1024,2);
+  const {
+    ext
+  } = await fileType.fromBuffer(buffer);
+  const sizeInMb = buffer.byteLength / Math.pow(1024, 2);
   const instanceId = uuidv4();
-  const fileName = `input.${ext}`;
-  const captionName = `caption.jpg`;
-  const outputFileName = `output.${ext}`;
   const dirPath = path.resolve(process.cwd(), 'tmp', instanceId);
-  const filePath = path.resolve(dirPath, fileName);
-  const captionPath = path.resolve(dirPath, captionName);
-  const outputPath = path.resolve(dirPath, outputFileName);
 
-  if (sizeInMb > 4) return msg.channel.send(`Error: File size is larger than 4MB, i don't wanna suffer`);
+  if (sizeInMb > 4) return msg.channel.send(`Error: File size is larger than 4MB, i don't wanna suffer`)
 
-  const feedbackMsg = msg.channel.send(`Processing... This might take a while!`);
+  const feedbackMsg = msg.channel.send(`Processing... This might take a while!`)
 
-  dlFile(buffer, dirPath, filePath).then(() => {
-    captionGenerator(filePath, outputPath, captionPath, captionText)
-    .then(outputBuffer => {
-      feedbackMsg.then(msg => {
-        const attachment = new MessageAttachment(outputBuffer, outputFileName);
-        msg.channel.send('', attachment).then(() => {
-          msg.delete().catch(err => {
-            console.log(err);
-          })
-        }).catch(err => {
-          msg.channel.send(err.message)
-        });
+  captionGenerator(buffer, dirPath, ext, captionText)
+    .then((outputBuffer => {
+      return feedbackMsg.then(msg => {
+        const attachment = new MessageAttachment(outputBuffer, `${instanceId}.${ext}`);
+        return msg.channel.send('', attachment)
       })
-    }).catch((err) => {
-      msg.channel.send(`Error: Cannot convert the file`);
-      console.log(err)
-    }).finally(() => {
-      fs.rmdir(dirPath, { recursive: true })
+    }))
+    .then(() => {
+      return msg.delete()
     })
-  })
-  .catch(err => {
-    fs.rmdir(dirPath, { recursive: true })
-    return msg.channel.send(`Error: ${err.message}`);
-  })
+    .catch((err) => {
+      msg.channel.send(`Error: Cannot convert the file`)
+      console.log(err)
+    });
 };
 
 exports.help = {
