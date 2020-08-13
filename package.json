@@ -4,7 +4,7 @@
   "description": "A Discord bot that generates GIF memes (supports normal images and GIFs)",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,5 +30,8 @@
     "node-fetch": "^2.6.0",
     "string-pixel-width": "^1.10.0",
     "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
