@@ -63,12 +63,8 @@ exports.run = async (bot, msg, args, rawArgs) => {
       })
     })
     .catch((err) => {
-      if (err.length >= 2000) {
-        msg.channel.send('Error: Cannot convert the file');
-        console.log(err);
-        return;
-      }
-      msg.channel.send(err.message);
+      msg.channel.send('Error: Cannot convert the file');
+      console.log(err);
     });
 };
 
