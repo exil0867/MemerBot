@@ -59,7 +59,9 @@ exports.run = async (bot, msg, args, rawArgs) => {
       })
     }))
     .then(() => {
-      return msg.delete()
+      return feedbackMsg.then(msg => {
+        return msg.delete();
+      })
     })
     .catch((err) => {
       if (err.length >= 2000) {
