@@ -45,40 +45,30 @@ exports.run = async (bot, msg, args, rawArgs) => {
   const { ext } = await fileType.fromBuffer(buffer);
   const sizeInMb = buffer.byteLength / Math.pow(1024,2);
   const instanceId = uuidv4();
-  const fileName = `input.${ext}`;
-  const outputFileName = `output.${ext}`;
   const dirPath = path.resolve(process.cwd(), 'tmp', instanceId);
-  const filePath = path.resolve(dirPath, fileName);
-  const outputPath = path.resolve(dirPath, outputFileName);
 
   if (sizeInMb > 4) return msg.channel.send(`Error: File size is larger than 4MB, i don't wanna suffer`);
 
   const feedbackMsg = msg.channel.send(`Processing... This might take a while!`);
 
-  dlFile(buffer, dirPath, filePath).then(() => {
-    memeGenerator(filePath, outputPath, {top: topText, bottom: bottomText})
-    .then(outputBuffer => {
-      feedbackMsg.then(msg => {
-        const attachment = new MessageAttachment(outputBuffer, outputFileName);
-        msg.channel.send('', attachment).then(() => {
-          msg.delete().catch(err => {
-            console.log(err);
-          })
-        }).catch(err => {
-          msg.channel.send(err.message)
-        });
+  memeGenerator(buffer, dirPath, ext, { top: topText, bottom: bottomText })
+    .then((outputBuffer => {
+      return feedbackMsg.then(msg => {
+        const attachment = new MessageAttachment(outputBuffer, `${instanceId}.${ext}`);
+        return msg.channel.send('', attachment)
       })
-    }).catch((err) => {
-      msg.channel.send(`Error: Cannot convert the file`);
-      console.log(err)
-    }).finally(() => {
-      fs.rmdir(dirPath, { recursive: true })
+    }))
+    .then(() => {
+      return msg.delete()
     })
-  })
-  .catch(err => {
-    fs.rmdir(dirPath, { recursive: true })
-    return msg.channel.send(`Error: ${err.message}`);
-  })
+    .catch((err) => {
+      if (err.length >= 2000) {
+        msg.channel.send('Error: Cannot convert the file');
+        console.log(err);
+        return;
+      }
+      msg.channel.send(err.message);
+  });
 };
 
 exports.help = {
