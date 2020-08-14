@@ -47,7 +47,7 @@ exports.run = async (bot, msg, args, rawArgs) => {
   const instanceId = uuidv4();
   const dirPath = path.resolve(process.cwd(), 'tmp', instanceId);
 
-  if (sizeInMb > 4) return msg.channel.send(`Error: File size is larger than 4MB, i don't wanna suffer`)
+  if (sizeInMb > 4) return msg.channel.send(`Error: File size is larger than 4MB, i don't wanna suffer.`)
 
   const feedbackMsg = msg.channel.send(`Processing... This might take a while!`)
 
@@ -65,7 +65,7 @@ exports.run = async (bot, msg, args, rawArgs) => {
       })
     })
     .catch((err) => {
-      msg.channel.send('Error: Cannot convert the file');
+      msg.channel.send('Error: Process probably crushed due to server overload. Please try again in minute.');
       console.log(err);
     });
   });
