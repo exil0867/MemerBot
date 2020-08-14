@@ -13,6 +13,7 @@ const path = require('path');
 const captionGenerator = require('../lib/caption-generator');
 const hostnameChecker = require('../utils/hostname-check');
 const tenorScraper = require('../utils/tenor-scraper');
+const { caption } = require('../index');
 
 exports.run = async (bot, msg, args, rawArgs) => {
   let url;
@@ -50,7 +51,8 @@ exports.run = async (bot, msg, args, rawArgs) => {
 
   const feedbackMsg = msg.channel.send(`Processing... This might take a while!`)
 
-  captionGenerator(buffer, dirPath, ext, captionText)
+  await caption.add(() => {
+    return captionGenerator(buffer, dirPath, ext, captionText)
     .then((outputBuffer => {
       return feedbackMsg.then(msg => {
         const attachment = new MessageAttachment(outputBuffer, `${instanceId}.${ext}`);
@@ -66,6 +68,8 @@ exports.run = async (bot, msg, args, rawArgs) => {
       msg.channel.send('Error: Cannot convert the file');
       console.log(err);
     });
+  });
+
 };
 
 exports.help = {

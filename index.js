@@ -3,6 +3,13 @@ const fs = require('fs');
 const { Client } = require('discord.js');
 const discordClient = new Client();
 const commandsMap = new Map();
+const {default: PQueue} = require('p-queue');
+
+const queue = {
+  caption: new PQueue({concurrency: 4})
+}
+
+module.exports = queue;
 
 const config = process.env;
 
