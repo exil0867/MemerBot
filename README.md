@@ -7,12 +7,13 @@ A Discord bot that generates GIF memes (supports normal images and GIFs)
 - More templates and features coming soon.
 
 ## Screenshots
-![Bot usage screenshot](https://i.imgur.com/2a9g0WE.gif)
+### Caption command
+![Discord bot usage screenshot](https://i.imgur.com/TRccA8S.gif)
 
-#### Indirect Tenor GIF links are supported.
-Example:
+### Meme command (Works on GIFs as well)
+[Discord bot usage screenshot](https://i.imgur.com/S64V5CK.gif)
 
-`m!caption https://tenor.com/view/monkey-wake-wake-up-sleepy-tired-gif-5387775 caption text`
+#### direct GIF links are supported.
 
 ## Commands
 - `m!caption <link> caption text`
@@ -25,4 +26,6 @@ Example:
 
 - `m!help`
 
-Feel free to report issues on: [https://github.com/ExillustX/MemerBot/issues](https://github.com/ExillustX/MemerBot/issues)
+Bot invite link: https://discordapp.com/api/oauth2/authorize?client_id=739873121783382037&permissions=321600&scope=bot
+
+Feel free to report issues on: https://github.com/ExillustX/MemerBot/issues
