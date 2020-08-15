@@ -13,7 +13,7 @@ A Discord bot that generates GIF memes (supports normal images and GIFs)
 ### Meme command (Works on GIFs as well)
 ![Discord bot usage screenshot](https://i.imgur.com/S64V5CK.png)
 
-#### direct GIF links are supported.
+#### Direct GIF links are supported.
 
 ## Commands
 - `m!caption <link> caption text`
