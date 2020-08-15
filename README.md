@@ -28,8 +28,8 @@ A Discord bot that generates GIF memes (supports normal images and GIFs)
 
 
 ## Bot invite link:
-https://discordapp.com/api/oauth2/authorize?client_id=739873121783382037&permissions=321600&scope=bot
+[https://discordapp.com/api/oauth2/authorize?client_id=739873121783382037&permissions=321600&scope=bot](https://discordapp.com/api/oauth2/authorize?client_id=739873121783382037&permissions=321600&scope=bot)
 
 
 ## Report an issue
-https://github.com/ExillustX/MemerBot/issues
+[https://github.com/ExillustX/MemerBot/issues](https://github.com/ExillustX/MemerBot/issues)
