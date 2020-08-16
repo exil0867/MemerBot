@@ -50,23 +50,21 @@ exports.run = async (bot, msg, args, rawArgs) => {
 
   const feedbackMsg = msg.channel.send(`Processing... This might take a while!`)
 
-  await caption.add(() => {
-    return captionGenerator(buffer, dirPath, ext, captionText)
-    .then((outputBuffer => {
-      return feedbackMsg.then(msg => {
-        const attachment = new MessageAttachment(outputBuffer, `${instanceId}.${ext}`);
-        return msg.channel.send('', attachment)
-      })
-    }))
-    .then(() => {
-      return feedbackMsg.then(msg => {
-        return msg.delete();
-      })
+  captionGenerator(buffer, dirPath, ext, captionText)
+  .then((outputBuffer => {
+    return feedbackMsg.then(msg => {
+      const attachment = new MessageAttachment(outputBuffer, `${instanceId}.${ext}`);
+      return msg.channel.send('', attachment)
     })
-    .catch((err) => {
-      msg.channel.send('Error: Process probably crushed due to server overload. Please try again in minute.');
-      console.log(err);
-    });
+  }))
+  .then(() => {
+    return feedbackMsg.then(msg => {
+      return msg.delete();
+    })
+  })
+  .catch((err) => {
+    msg.channel.send('Error: Process probably crushed due to server overload. Please try again in minute.');
+    console.log(err);
   });
 
 };
