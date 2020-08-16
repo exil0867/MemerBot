@@ -55,7 +55,7 @@ discordClient.on('message', message => {
   let rawArgs = raw.slice(1);
   let userId = message.author.id;
 
-  if (commandCooldown[label].has(userId)) return message.channel.send(`This command has a cooldown of ${commandsMap.get(label).help.cooldown} seconds. Please wait a bit and try again!`);
+  if (commandCooldown[label].has(userId)) return message.channel.send(`This command has a cooldown of ${commandsMap.get(label).help.cooldown} seconds. Please wait a bit and try again!`).then(msg => msg.delete({ timeout: 3000 }));
   commandCooldown[label].add(userId);
   setTimeout(() => {
     commandCooldown[label].delete(userId)
