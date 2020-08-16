@@ -13,7 +13,6 @@ const path = require('path');
 const captionGenerator = require('../lib/caption-generator');
 const hostnameChecker = require('../utils/hostname-check');
 const tenorScraper = require('../utils/tenor-scraper');
-const { caption } = require('../index');
 
 exports.run = async (bot, msg, args, rawArgs) => {
   let url;
