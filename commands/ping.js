@@ -7,6 +7,7 @@ exports.run = async (bot, msg, args, rawArgs) => {
 
 exports.help = {
   name: 'ping',
+  cooldown: 3,
   usage: 'ping',
   description: 'Pings the bot'
 };

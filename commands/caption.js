@@ -71,6 +71,7 @@ exports.run = async (bot, msg, args, rawArgs) => {
 
 exports.help = {
   name: 'caption',
+  cooldown: 15,
   usage: 'caption',
   description: 'Generate a GIF Caption meme'
 };

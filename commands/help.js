@@ -30,6 +30,7 @@ exports.run = (bot, msg, args, rawArgs) => {
 };
 exports.help = {
   name: 'help',
+  cooldown: 3,
   usage: 'help',
   description: 'Help command.'
 };

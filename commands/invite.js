@@ -12,6 +12,7 @@ exports.run = (bot, msg, args, rawArgs) => {
 
 exports.help = {
   name: 'invite',
+  cooldown: 3,
   usage: 'invite',
   description: 'Invite the bot to your server'
 };
