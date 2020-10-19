@@ -30,8 +30,8 @@ A Discord bot that generates GIF memes (supports normal images and GIFs)
 - ImageMagick: https://imagemagick.org
 
 
-__## Bot invite link:
-[https://discordapp.com/api/oauth2/authorize?client_id=739873121783382037&permissions=321600&scope=bot](https://discordapp.com/api/oauth2/authorize?client_id=739873121783382037&permissions=321600&scope=bot)__
+## Bot invite link:
+__[https://discordapp.com/api/oauth2/authorize?client_id=739873121783382037&permissions=321600&scope=bot](https://discordapp.com/api/oauth2/authorize?client_id=739873121783382037&permissions=321600&scope=bot)__
 
 
 ## Report an issue
