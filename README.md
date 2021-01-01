@@ -34,7 +34,7 @@ A Discord bot that generates GIF memes (supports normal images and GIFs)
 
 To process GIFs i needed a server with good a CPU/MEMORY and it costed around $20 per month. I couldn't afford it anymore (plus Discord was already asking me to verify the bot) so i decided to shutdown it down, sorry.
 
-With that being said, this project is open source and you can still host it on your own server/computer, though you will need some basic knowledge in NPM and Environment Variables (since this app uses `dotenv` to store senstiive data like tokens).
+With that being said, this project is open source and you can still host it on your own server/computer, though you will need some basic knowledge in NPM and Environment Variables (since this app uses `dotenv` to store sensitive data like tokens).
 
 ## Requirements:
 - ImageMagick: https://imagemagick.org
