@@ -39,5 +39,8 @@ With that being said, this project is open source and you can still host it on y
 ## Requirements:
 - ImageMagick: https://imagemagick.org
 
+*Note: During the setup process make sure to check "Add application directory to your system path" and "Install legacy utilities".*
+
+
 ## Report an issue
 [https://github.com/exilravu/MemerBot/issues](https://github.com/exilravu/MemerBot/issues)
