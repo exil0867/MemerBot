@@ -22,7 +22,7 @@
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "execa": "^4.0.3",
-    "file-type": "^14.7.0",
+    "file-type": "^16.5.4",
     "gifsicle": "^5.1.0",
     "image-size": "^0.8.3",
     "imagemagick-cli": "^0.5.0",
